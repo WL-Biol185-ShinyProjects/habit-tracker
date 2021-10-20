@@ -1,4 +1,9 @@
 
+library(shiny)
+library(leaflet)
+
+
+
 library(ggplot2)
 fluidPage(
   titlePanel("Wine Data Table"), 
@@ -27,3 +32,4 @@ fluidPage(
   )
   
   
+

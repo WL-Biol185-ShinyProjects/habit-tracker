@@ -1,4 +1,13 @@
 
+library(shiny)
+library(ggplot2)
+
+#making a function that summarizes the data table
+function (input, output) {
+  
+}
+
+
 library(ggplot2)
 
 function (input, output) {
@@ -33,3 +42,4 @@ function (input, output) {
   
   
   
+>>>>>>> 66c392f406a38e442e25557ebda56a72b9f6878b
