@@ -7,11 +7,12 @@ function(input,output) {
   
   output$worldMap <- renderLeaflet({
     
-    #pull excell columns for all columns of interest into wine_data using readxl::anchored
-    #might not need this variable if you can pull direct columns into individual vairables 
-    wine_data <- readxl::read_xls("Wine Location.xlsx")
+    dataset <- read_excel("Wine Location.xlsx")
+    View(dataset)
+    
     #pull excell column for latitude, longitude, price, and points using readxl
     #look into if readxl:: col can take the excell sheet as an input 
+    
     wine_lat <- readxl::cell_cols(L2:L992)
     wine_lon <- readxl::cell_cols(M2:M992)
     wine_price <- readxl::cell_cols(F2:F992)
