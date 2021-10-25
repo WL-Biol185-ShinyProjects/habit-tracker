@@ -9,13 +9,13 @@ function(input,output) {
     
     #pull excell columns for all columns of interest into wine_data using readxl::anchored
     #might not need this variable if you can pull direct columns into individual vairables 
-    wine_data <- readxl::("Wine Location.xlsx")
+    wine_data <- readxl::read_xls("Wine Location.xlsx")
     #pull excell column for latitude, longitude, price, and points using readxl
     #look into if readxl:: col can take the excell sheet as an input 
-    wine_lat <- 
-    wine_lon <- wine_data$Longitude
-    wine_price <- wine_data$price
-    wine_rating <- wine_data$points
+    wine_lat <- readxl::cell_cols(L2:L992)
+    wine_lon <- readxl::cell_cols(M2:M992)
+    wine_price <- readxl::cell_cols(F2:F992)
+    wine_rating <- readxl::cell_cols(E2:E992)
     
     wine_loc <- data.frame(wine_lat, wine_lon, wine_price, wine_rating, stringsAsFactors = FALSE)
     
