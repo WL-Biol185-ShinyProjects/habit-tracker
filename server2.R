@@ -1,15 +1,23 @@
 library(shiny)
-<<<<<<< HEAD
+
 
 library(leaflet)
 
-=======
+
 library(leaflet)
-library(readxl)
->>>>>>> a26c32cd3b3338d1d9f6fc57c3c01e2f6a8fe5f8
+library(readr)
 
 
-function(input,output) {
+
+shinyServer(function(input,output) {
+  wine_data2<- read_csv("Wine Location2.csv", stringsASFactors= FALSE)
+  wine_data2<- data.frame(wine_data2)
+  
+  
+  
+  
+  
+  
   
   output$worldMap <- renderLeaflet({
     
@@ -44,8 +52,3 @@ function(input,output) {
 
   
   
-<<<<<<< HEAD
-  })
-
-=======
->>>>>>> 540858c2b5407ffeabaa28ec277f3ef67d4d28dc
