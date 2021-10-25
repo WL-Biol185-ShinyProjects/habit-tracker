@@ -31,5 +31,8 @@ function(input,output) {
 
   
   
+<<<<<<< HEAD
   })
 
+=======
+>>>>>>> 540858c2b5407ffeabaa28ec277f3ef67d4d28dc
