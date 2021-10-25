@@ -13,12 +13,17 @@ function (input, output) {
   wine_loc$price <- as.numeric(wine_loc$price)
   wine_loc$points <- as.numeric(wine_loc$points)
   
+  #add 5 colors, make legend 
+  
+  pal <- colorFactor(pal = c("#C83316", "#23B400", "#0019B4"), domain = c("points", "price"))
+  
   output$wineMap <- renderLeaflet({
     
     leaflet(wine_loc) %>%
       addTiles()%>%
       addMarkers(~Longitude, ~Latitude) %>%
-      addCircleMarkers(radius = ~points, label = ~winery)
+      addCircleMarkers(label = ~winery, 
+                       color = ~pal(wine_loc$points))
   })
   
   observe({
