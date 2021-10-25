@@ -1,11 +1,17 @@
 library(shiny)
 library(leaflet)
-library(dplyr)
-library(readxl)
+library(readr)
 
 
 fluidPage(
-  leafletOutput("worldMap")
+  # map output 
+  leafletOutput("wineMap"),
+  
+  # line break 
+  br(), 
+  
+  # button 
+  actionButton("newButton", "New wine!")
 )
 
 
