@@ -37,9 +37,10 @@ function (input, output) {
       addTiles()%>%
       #some lat and long values arent showing up 
       addCircleMarkers(lng = ~Longitude, 
-                       lat = ~Latitude, 
+                       lat = ~Latitude,
+                       color = pal,
                        weight = 1, 
-                       popup = ~as.character(cntnt), 
+                       popup = ~as.character(cntnt),
                        clusterOptions = markerClusterOptions()) %>%
       addLegend(position = "bottomleft", 
                 values = ~points, 
