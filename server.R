@@ -42,26 +42,23 @@ function (input, output) {
       #addCircles(~Longitude, ~Latitude, fillopacity = 0.5) %>%
       addTiles()%>%
       #addMarkers(~Longitude, ~Latitude, label = ~winery, popup = ~as.character(description)) %>%
-<<<<<<< HEAD
-      addCircleMarkers(lng = ~Longitude, 
-                       lat = ~Latitude, 
-                       weight = 1, 
-                       popup = ~winery, 
-                       clusterOptions = markerClusterOptions())%>%
+      #addCircleMarkers(lng = ~Longitude, 
+                       #lat = ~Latitude, 
+                       #weight = 1, 
+                        #popup = ~winery, 
+                       #clusterOptions = markerClusterOptions())%>%
       #addLegend(
         #position = "topright",
         #pal = ~pal,
         #values = wine_loc$points,
         #opacity = 1,
         #title = "Colors by rating")
-=======
       #some lat and long values arent showing up 
       addCircleMarkers(lng = ~Longitude, lat = ~Latitude, weight = 1, popup = ~as.character(cntnt), clusterOptions = markerClusterOptions())
       #addLegend(position = "bottomleft", values = ~points, pal= color, title = "Wine By Rating")
         #pal = color, 
         #title= "Wine by Rating"
     #  )
->>>>>>> 34ab5e44d6fce6f50b9f55a528d8cd2015cf68ea
       #(wine_loc, position= "topright", pal=pal, values = wine_loc$points, opacity = 1, na.label = "Not Availible")
     })
    
