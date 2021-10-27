@@ -1,4 +1,4 @@
-
+library(dplyr)
 library(shiny)
 library(ggplot2)
 
@@ -54,11 +54,8 @@ function (input, output) {
         #opacity = 1,
         #title = "Colors by rating")
       #some lat and long values arent showing up 
-      addCircleMarkers(lng = ~Longitude, lat = ~Latitude, weight = 1, popup = ~as.character(cntnt), clusterOptions = markerClusterOptions())
-      #addLegend(position = "bottomleft", values = ~points, pal= color, title = "Wine By Rating")
-        #pal = color, 
-        #title= "Wine by Rating"
-    #  )
+      addCircleMarkers(lng = ~Longitude, lat = ~Latitude, weight = 1, popup = ~as.character(cntnt), clusterOptions = markerClusterOptions()) %>%
+      addLegend(position = "bottomleft", values = ~points, pal= pal, title = "Wine By Rating")
       #(wine_loc, position= "topright", pal=pal, values = wine_loc$points, opacity = 1, na.label = "Not Availible")
     })
    
