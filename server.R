@@ -14,11 +14,6 @@ function (input, output) {
   wine_loc$points <- as.numeric(wine_loc$points)
   wine_loc$Latitude<- jitter(wine_loc$Latitude, factor = 0.01)
   wine_loc$Longitude<- jitter(wine_loc$Longitude, factor = 0.01)
-
-  
- #wine_loc$pointsrange= cut(wine_loc$points, 
-                            # breaks = c( 96, 97, 98, 99, 100), right= FALSE,
-                            # labels= c("96-97", "98", "99", "100"))
             
 
   wine_loc<- mutate(wine_loc, cntnt= paste0('<strong>Winery: </strong>', winery,
@@ -39,24 +34,17 @@ function (input, output) {
   output$wineMap <- renderLeaflet({
     
     leaflet(wine_loc) %>%
-      #addCircles(~Longitude, ~Latitude, fillopacity = 0.5) %>%
       addTiles()%>%
-      #addMarkers(~Longitude, ~Latitude, label = ~winery, popup = ~as.character(description)) %>%
-      #addCircleMarkers(lng = ~Longitude, 
-                       #lat = ~Latitude, 
-                       #weight = 1, 
-                        #popup = ~winery, 
-                       #clusterOptions = markerClusterOptions())%>%
-      #addLegend(
-        #position = "topright",
-        #pal = ~pal,
-        #values = wine_loc$points,
-        #opacity = 1,
-        #title = "Colors by rating")
       #some lat and long values arent showing up 
-      addCircleMarkers(lng = ~Longitude, lat = ~Latitude, weight = 1, popup = ~as.character(cntnt), clusterOptions = markerClusterOptions()) %>%
-      addLegend(position = "bottomleft", values = ~points, pal= pal, title = "Wine By Rating")
-      #(wine_loc, position= "topright", pal=pal, values = wine_loc$points, opacity = 1, na.label = "Not Availible")
+      addCircleMarkers(lng = ~Longitude, 
+                       lat = ~Latitude, 
+                       weight = 1, 
+                       popup = ~as.character(cntnt), 
+                       clusterOptions = markerClusterOptions()) %>%
+      addLegend(position = "bottomleft", 
+                values = ~points, 
+                pal= pal, 
+                title = "Wine By Rating")
     })
    
     observe({
