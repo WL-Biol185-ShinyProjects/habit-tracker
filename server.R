@@ -5,9 +5,7 @@ library(DT)
 
 #making a function that displays a map with the top rated wines by region
 function (input, output) {
-  dataset <- read.csv("Wine Location2.csv")
-
-  wine_loc <- data.frame(dataset, stringAsFactors = FALSE)
+  wine_loc <- read.csv("Wine Location2.csv")
   
   wine_loc$Latitude <- as.numeric(wine_loc$Latitude)
   wine_loc$Longitude <- as.numeric(wine_loc$Longitude)
@@ -15,14 +13,6 @@ function (input, output) {
   wine_loc$points <- as.numeric(wine_loc$points)
   wine_loc$Latitude<- jitter(wine_loc$Latitude, factor = 0.01)
   wine_loc$Longitude<- jitter(wine_loc$Longitude, factor = 0.01)
-  
-  filteredData<- reactive({
-    if (input$country =="All countries") {
-      wine_loc
-    } else {
-      filter(wine_loc, country== input$country)
-    }
-  })
             
 
   wine_loc<- mutate(wine_loc, cntnt= paste0('<strong>Winery: </strong>', winery,
@@ -31,14 +21,13 @@ function (input, output) {
                                             '<br><strong>Description: </strong>', description, 
                                             '<br><strong>Price$:</strong>', price, 
                                             '<br><strong>Rating: </strong>', points))
-  #filteredData<- reactive({
-    #if (input$countries== "All countries") {
-    #  wine_loc
-    #} else{
-    #  filter(wine_loc, countries == input$countries)
-   # }
-    
- # } )
+  filteredData<- reactive({
+    if(input$country =="All countries") {
+      wine_loc
+    } else {
+      filter(wine_loc, country== input$country)
+    }
+  })
   
     
                             
