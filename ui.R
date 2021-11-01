@@ -6,17 +6,19 @@ library(leaflet)
 fluidPage(
   # map output 
   titlePanel("The Locations of the Most Highly Rated Wines"),
-  mainPanel(leafletOutput("wineMap"))
- # absolutePanel(top= 10, right = 10,
-                #selectInput(inputId= "country", 
-                            #label = "country", 
-                            #choices = "Argentina", "Australia", 
-                            #"Austria", "France", "Germany", 
-                           # "Hungary" ))
-)
-  #navbarPage("Locations of Highly Ranked Wines", id= "main", 
-            #tabPanel("Map", leafletOutput("wineMap", height= 1000)), 
-            # tabPanel("Data", DT::dataTableOutput("data")))
+  mainPanel(leafletOutput("wineMap")
+ 
+
+))
+  navbarPage("Locations of Highly Ranked Wines", id= "main", position = "static-top", 
+            tabPanel("Introduction"),
+            tabPanel("Map", leafletOutput("wineMap", height= 500), absolutePanel(top= 50, right = 10, selectInput(inputId="country", label = "Select a country to find its most highly rated wines!", choices = list("All countries", "Argentina","Australia", "Austria", "France", "Germany", "Italy", "Portugal", "Spain", "US" )))), 
+            tabPanel("Data", DT::dataTableOutput("data"), fluidRow(column(2, selectInput("country", "Country:",
+                                                                                         c("All",
+                                                                                           unique(as.character(wine_loc$country)))))
+                                                                   
+                                                                          
+            )))
   # line break 
   #br(), 
   
