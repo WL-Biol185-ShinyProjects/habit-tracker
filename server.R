@@ -5,7 +5,8 @@ library(DT)
 
 #making a function that displays a map with the top rated wines by region
 function (input, output) {
-  dataset <- read.csv("Wine Location2.csv")
+  dataset <- read.csv("Wine LocationFINAL.csv")
+  #wine_loc<- read_csv(Wine_Location2, stringAsFactors= FALSE)
 
   wine_loc <- data.frame(dataset, stringAsFactors = FALSE)
   
