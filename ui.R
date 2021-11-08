@@ -3,9 +3,9 @@ library(shiny)
 library(leaflet)
 library(shinydashboard)
 
-source("introduction.R")
-source("map.R")
-source("dataTable.R")
+#source("introduction.R")
+#source("map.R")
+#source("dataTable.R")
 
 #dashboardPage(
   #dashboardHeader(title = "Wine: Ratings, Locations, & Climate Change", titlewidth = 625), 
