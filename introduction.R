@@ -43,7 +43,8 @@ introductionText <-
              Celcius. In this website, we want to share these risks while also offering an informative user
              experience about wines in general."
            )
-           )
+        ),
+    
     img(src = "GrapeVine.jpg", 
         height = "25%", 
         width = "50%", 
