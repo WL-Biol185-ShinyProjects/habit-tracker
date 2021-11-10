@@ -147,5 +147,5 @@ wineType[wine_data$variety]
 
 wine_data$color <- wineType[wine_data$variety]
 
-clean_wine <-wine_data %>%
+clean_wine <- wine_data %>%
   select(2:3, 5:7, 12:15)
