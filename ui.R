@@ -48,7 +48,16 @@ dashboardPage(skin = "blue",
                               sauvignon, carmenere, merlot, malbec, petit verdot, grenache, tempranillo,
                               primitivo, sangiovese, syrah/shiraz, and zinfandel. Types of white wine include: 
                               Chardonnay, pinot grigio, sauvignon blanc, and riesling. These types of wine are 
-                              categorized by taste in 4 ways: fruit, body, tanin, and acidity.")
+                              categorized by taste in 4 ways: fruit, body, tanin, and acidity."),
+                            box(
+                              title="Goals of This App", width=NULL, background="olive",
+                              "In this app, we hope to help viewers explore and fine new wines and vineyards
+                              to find. We have a map of the location of the highest rated wines, and a data 
+                              table and filtered page where individuals can explore and compare price, type 
+                              of wine, and flavor profile. We also hope to educate viewers on the growing 
+                              impact of climate change on grape growing. Climate change will have a large 
+                              impact on the future of vineyards and what grapes they are able to grow."
+                            )
                             ),
                             column(
                               width=6,
@@ -70,8 +79,9 @@ dashboardPage(skin = "blue",
                               up to 56% with a temperature change of 2 degrees Celcius. In this website, we want 
                               to share these risks while also offering an informative user experience about wines 
                               in general.")
-                                  ),
-                            div(img(src="GrapeVine.jpg"), style= "text-align: center;")
+                              ),
+                            div(img(src="vineyard.jpg"), style= "text-align: center;")
+                            
                                   )
                                 ),
                   tabItem(tabName = "map", 
