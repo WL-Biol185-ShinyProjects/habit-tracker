@@ -22,6 +22,7 @@ function (input, output) {
   wine_loc <- read.csv("Wine Location2.csv")
   
   countrywineproduction<- read_csv("Country Wine Production.csv")
+  worldwinevolume<- read_csv("World Wine Production Volume.csv")
 
   wine_loc$Latitude <- as.numeric(wine_loc$Latitude)
   wine_loc$Longitude <- as.numeric(wine_loc$Longitude)
@@ -81,11 +82,15 @@ function (input, output) {
        colnames= c("Number", "Country", "Description","Designation", "Points", "Price", "Province", 
         "Region 1", "Region 2", "Variety", "Winery", "Lat", "Long"))
     
-    output$worldwineplot<- renderPlot({
-      barplot(countrywineproduction [,input$country]*1000,
-              main= input$country,
-              ylab = "Mhl", 
-              xlab = "Year")
+    output$worldvolumePlot<- renderPlot({
+        ggplot(worldwinevolume, aes(Year, Mhl))+ 
+        geom_point(color= "red", size= 3)+ 
+        geom_smooth() +
+        scale_x_continuous(breaks = c(2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021))
+      #barplot(countrywineproduction [,input$country]*1000,
+              #main= input$country,
+              #ylab = "Mhl", 
+              #xlab = "Year")
         
       })
     

@@ -74,7 +74,7 @@ dashboardPage(skin = "red",
               )), 
                   tabItem(tabName = "map", 
                           fluidRow(
-                            p("Choose a country to see each of its most highly ranked wines and their information!"), 
+                            p("     Choose a country to see each of its most highly ranked wines and their information!"), 
                             box(
                               width = 12,
                               title= "Locations of the Most Highly Ranked Wines", 
@@ -113,31 +113,32 @@ dashboardPage(skin = "red",
                          ), 
               
                     tabItem(tabName = "growth", 
-                            fluidRow(
-                            #fluidPage(
+                            #fluidRow(
+                            fluidPage(
                               titlePanel= ("Changes in Wine Volume Production, unit=mhl"), 
-                             # fluidRow(
+                              fluidRow(
                                 tabBox(
-                                  #title = "World Wide Changes",
-                                  #tabPanel("World Wide", plotOutput("worldvolumePlot")
+                                  title = "Changes in Wine Volume Production due to Climate Change",
+                                  tabPanel("World Wide Wine Production", plotOutput("worldvolumePlot", width = "100%")), 
+                                  tabPanel("Individual Countries' Wine Production")
                                     
                                 
-                              sidebarLayout(
+                              #sidebarLayout(
                                 
-                                sidebarPanel(
-                                  selectInput("country", "Country:", choices = colnames(Country_Wine_Production)), 
-                                  hr(), 
-                                  helpText("Data From...")
-                                ), 
-                                mainPanel = (
-                                  plotOutput("worldwineplot")
+                               # sidebarPanel(
+                                 # selectInput("country", "Country:", choices = colnames(Country_Wine_Production)), 
+                                 # hr(), 
+                                 # helpText("Data From...")
+                              #  ), 
+                               # mainPanel = (
+                                 # plotOutput("worldwineplot")
                                 )
                                 )
                              
                             )
                             
                       
-                    )),
+                    ),
                                 
                         tabItem(tabName = "references", 
                                 fluidRow(
@@ -215,7 +216,7 @@ dashboardPage(skin = "red",
              # fluidRow(column(2, selectInput("country", "Country:", c("All",unique(as.character(wine_loc$country)))
              # )))))),
 #dashboardPage(
-<<<<<<< HEAD
+
   #dashboardHeader(title = "Wine: Ratings, Locations, & Climate Change", titlewidth = 625), 
   #skin = "green", 
   #dashboardSidebar(
@@ -237,7 +238,7 @@ dashboardPage(skin = "red",
        #tabItem(tabName = "Map", mapOutput), 
        #tabItem(tabName = "All Wines", wineData)
     #)
-=======
+
   #dashboardHeader(title = "Wine Info"), 
   #sidebar, 
  # body)
@@ -274,7 +275,6 @@ dashboardPage(skin = "red",
              # )
   # tabItem(tabName = "All Wines", wineData)
    # )
->>>>>>> 2e58aec90dfb09a68078fb3da55813679bb35264
   #)
 #)
 
