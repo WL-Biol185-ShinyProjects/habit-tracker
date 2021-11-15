@@ -11,6 +11,7 @@ library(ggplot2)
 #source("introduction.R")
 #source("map.R")
 #source("dataTable.R")
+Country_Wine_Production <- read.csv("Country Wine Production.csv")
 
 dashboardPage(skin = "red", 
               dashboardHeader(title = "Wine Dashboard", titleWidth = 600), 
@@ -215,7 +216,7 @@ dashboardPage(skin = "red",
              # fluidRow(column(2, selectInput("country", "Country:", c("All",unique(as.character(wine_loc$country)))
              # )))))),
 #dashboardPage(
-<<<<<<< HEAD
+
   #dashboardHeader(title = "Wine: Ratings, Locations, & Climate Change", titlewidth = 625), 
   #skin = "green", 
   #dashboardSidebar(
@@ -237,7 +238,7 @@ dashboardPage(skin = "red",
        #tabItem(tabName = "Map", mapOutput), 
        #tabItem(tabName = "All Wines", wineData)
     #)
-=======
+
   #dashboardHeader(title = "Wine Info"), 
   #sidebar, 
  # body)
@@ -274,7 +275,7 @@ dashboardPage(skin = "red",
              # )
   # tabItem(tabName = "All Wines", wineData)
    # )
->>>>>>> 2e58aec90dfb09a68078fb3da55813679bb35264
+
   #)
 #)
 
