@@ -44,11 +44,11 @@ introductionText <-
              experience about wines in general."
            )
            )
-    img(src = "GrapeVine.jpg", 
-        height = "25%", 
-        width = "50%", 
-        align = "middle", 
-        style="display: block; margin-left: auto; margin-right: auto;")
+   # img(src = "GrapeVine.jpg", 
+        #height = "25%", 
+        #width = "50%", 
+       # align = "middle", 
+       # style="display: block; margin-left: auto; margin-right: auto;")
   )
 
 
