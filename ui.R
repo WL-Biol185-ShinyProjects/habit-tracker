@@ -215,6 +215,29 @@ dashboardPage(skin = "red",
              # fluidRow(column(2, selectInput("country", "Country:", c("All",unique(as.character(wine_loc$country)))
              # )))))),
 #dashboardPage(
+<<<<<<< HEAD
+  #dashboardHeader(title = "Wine: Ratings, Locations, & Climate Change", titlewidth = 625), 
+  #skin = "green", 
+  #dashboardSidebar(
+    #sidebarMenu(
+      #menuItem("Introduction", 
+               #tabName = "intro"), 
+      #menuItem("Map of Highly Ranked Wines", 
+               #tabName = "map"), 
+      #menuItem("Data Table of Wines Around the World", 
+               #tabName = "data"), 
+      #menuItem("References", 
+               #tabName = "references")
+    #)
+  #),
+
+  #dashboardBody(
+    #tabItems(
+       #tabItem(tabName = "Introduction", introductionText),
+       #tabItem(tabName = "Map", mapOutput), 
+       #tabItem(tabName = "All Wines", wineData)
+    #)
+=======
   #dashboardHeader(title = "Wine Info"), 
   #sidebar, 
  # body)
@@ -251,6 +274,7 @@ dashboardPage(skin = "red",
              # )
   # tabItem(tabName = "All Wines", wineData)
    # )
+>>>>>>> 2e58aec90dfb09a68078fb3da55813679bb35264
   #)
 #)
 
