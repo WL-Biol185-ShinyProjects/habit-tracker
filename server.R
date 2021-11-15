@@ -1,7 +1,15 @@
 library(dplyr)
 library(shiny)
+library(shinydashboard)
 library(ggplot2)
 library(DT)
+library(leaflet)
+library(shinyWidgets)
+library(markdown)
+
+#source("introduction.R")
+#source("map.R")
+#source("dataTable.R")
 
 #making a function that displays a map with the top rated wines by region
 function (input, output) {
@@ -12,6 +20,8 @@ function (input, output) {
   wine_loc <- data.frame(dataset, stringAsFactors = FALSE)
 
   wine_loc <- read.csv("Wine Location2.csv")
+  
+  countrywineproduction<- read_csv("Country Wine Production.csv")
 
   wine_loc$Latitude <- as.numeric(wine_loc$Latitude)
   wine_loc$Longitude <- as.numeric(wine_loc$Longitude)
@@ -58,10 +68,25 @@ function (input, output) {
     observe({
     btn <- input$newButton
     
-  })
+  }) 
+    output$wineplot<- renderPlot({
+      barplot(WineOutput[,input$Country]*1000, 
+              main=input$Country,
+              ylab= "Wine production", 
+              xlab= "Year")
+    
+    })
     output$data <- DT:: renderDataTable (datatable(
        wine_loc), filter= c("top", "none", "bottom"),
        colnames= c("Number", "Country", "Description","Designation", "Points", "Price", "Province", 
         "Region 1", "Region 2", "Variety", "Winery", "Lat", "Long"))
+    
+    output$worldwineplot<- renderPlot({
+      barplot(countrywineproduction [,input$country]*1000,
+              main= input$country,
+              ylab = "Mhl", 
+              xlab = "Year")
+        
+      })
     
 }
