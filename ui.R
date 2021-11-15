@@ -13,7 +13,7 @@ library(ggplot2)
 #source("dataTable.R")
 Country_Wine_Production <- read.csv("Country Wine Production.csv")
 
-dashboardPage(skin = "purple", 
+dashboardPage(skin = "blue", 
               dashboardHeader(title = "Wine Dashboard", titleWidth = 600), 
               dashboardSidebar(width = 240,
                 sidebarMenu(
