@@ -22,7 +22,7 @@ function (input, output) {
   wine_loc <- data.frame(dataset, stringAsFactors = FALSE)
 
   wine_loc <- read.csv("Wine Location2.csv")
-  DTWine <- read_csv("DTWine.csv")
+  DTWine <- read.csv("DTWine.csv")
   
   countrywineproduction<- read_csv("Country Wine Production.csv")
   worldwinevolume<- read_csv("World Wine Production Volume.csv")
