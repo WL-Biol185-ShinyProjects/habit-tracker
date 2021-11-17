@@ -3,7 +3,9 @@ library(shiny)
 library(shinydashboard)
 library(ggplot2)
 library(DT)
+library(tidyverse)
 library(leaflet)
+library(readr)
 library(shinyWidgets)
 library(markdown)
 
@@ -23,6 +25,11 @@ function (input, output) {
   
   countrywineproduction<- read_csv("Country Wine Production.csv")
   worldwinevolume<- read_csv("World Wine Production Volume.csv")
+  
+  clean_wine <- read_csv("clean_wine.csv")
+  cleaner_wine <- clean_wine %>%
+    select(2:10) 
+  cleanest_wine <- cleaner_wine[order(cleaner_wine$points, decreasing = TRUE), ]
 
   wine_loc$Latitude <- as.numeric(wine_loc$Latitude)
   wine_loc$Longitude <- as.numeric(wine_loc$Longitude)
@@ -32,7 +39,7 @@ function (input, output) {
   wine_loc$Longitude<- jitter(wine_loc$Longitude, factor = 0.01)
             
 
-  wine_loc<- mutate(wine_loc, cntnt= paste0('<strong>Winery: </strong>', winery,
+  wine_loc <- mutate(wine_loc, cntnt= paste0('<strong>Winery: </strong>', winery,
                                             '<br><strong>Province:</strong>', province,
                                             '<br> <strong> Variety: </strong>', variety, 
                                             '<br><strong>Description: </strong>', description, 
@@ -42,11 +49,23 @@ function (input, output) {
     if(input$country =="All countries") {
       wine_loc
     } else {
-      filter(wine_loc, country== input$country)
+      filter(wine_loc, country == input$country)
     }
   })
                             
   #add 5 colors, make legend 
+  
+  your.data <- reactive({
+    new <- cleanest_wine %>%
+      filter(color == input$color) %>%
+      filter(variety == input$variety) %>%
+      filter(price >= input$price[1] & price <= input$price[2])
+  })
+  
+  
+  output$text <- renderText({"Based on your choices, here are 10 wines we recommend 
+                              (sorted by WineEnthusiast Points)"})
+  output$table <- renderTable({head(your.data(), 10)})
   
  pal <- colorFactor(pal = c("green", "blue", "purple", "yellow", "black"), domain = c("96", "97", "98", "99", "100"))
   

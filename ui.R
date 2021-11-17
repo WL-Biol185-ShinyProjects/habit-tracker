@@ -3,6 +3,7 @@ library(leaflet)
 library(shiny)
 library(shinyWidgets)
 library(shinydashboard)
+library(tidyverse)
 library(markdown)
 library(ggplot2)
 
@@ -20,6 +21,7 @@ dashboardPage(skin = "blue",
                   menuItem("Introduction", tabName = "intro", icon = icon("info")), 
                   menuItem("Map", tabName = "map", icon = icon("map-marker-alt")), 
                   menuItem("Data Table", tabName = "datatable", icon = icon("wine-glass")),
+                  menuItem("Find a Wine!", tabName = "finder", icon = icon("search")),
                   menuItem("Wine Growth", tabName = "growth", icon = icon("chart-line")),
                   menuItem("References", tabName = "references", icon = icon("toolbox"))
                 )
@@ -123,6 +125,85 @@ dashboardPage(skin = "blue",
                                     )
                                   )
                          ) ,
+                    tabItem(tabName = "finder",
+                            fluidPage(
+                              titlePanel("Find a Wine!"),
+                              sidebarLayout(
+                                sidebarPanel(
+                                  radioButtons("color", label = "Are you in the mood for red or white?", 
+                                               choices = list("Red", "White"), selected = 1),
+                                  selectizeInput("variety", 
+                                                 "Any variety in particular? 
+                     *Note: You can select as many as you'd like or you do not have to select anything!",
+                                                 choices = list("Abouriou", "Agiorgitiko", "Aglianico", "Aidani", "Airen", "Albana", 
+                                                                "Albanello", "Albariño", "Albarossa", "Aleatico", "Alfrocheiro", "Alicante", 
+                                                                "Alicante Bouschet", "Aligoté", "Alsace white blend", "Altesse", "Alvarelhão", 
+                                                                "Alvarinho", "Alvarinho-Chardonnay", "Ansonica", "Antão Vaz", "Apple", 
+                                                                "Aragonês", "Aragonez", "Argaman", "Arinto", "Arneis", "Asprinio", "Assyrtico", 
+                                                                "Assyrtiko", "Athiri", "Austrian Red Blend", "Austrian white blend", "Auxerrois", 
+                                                                "Avesso", "Azal", "Babic", "Babosa Negro", "Bacchus", "Baco Noir", 
+                                                                "Baga-Touriga Nacional", "Barbera", "Barbera-Nebbiolo", "Bastardo", "Biancale", 
+                                                                "Biancolella", "Biancu Gentile", "Bical", "Black Muscat", "Blanc du Bois", "Blatina", 
+                                                                "Blauburger", "Blauburgunder", "Blauer Portugieser", "Blaufränkisch", "Bobal", 
+                                                                "Bobal-Cabernet Sauvignon", "Bogazkere", "Bombino Bianco", "Bombino Nero", 
+                                                                "Bonarda", "Bordeaux-style Red Blend", "Bordeaux-style White Blend", "Bovale", 
+                                                                "Brachetto", "Braucol", "Bual", "Cabernet", "Cabernet Blend", "Cabernet Franc", 
+                                                                "Cabernet Franc-Cabernet Sauvignon", "Cabernet Franc-Carmenère", 
+                                                                "Cabernet Franc-Lemberge", "Cabernet Franc-Malbec", "Cabernet Franc-Merlot", 
+                                                                "Cabernet Merlot", "Cabernet Moravia", "Cabernet Pfeffer", "Cabernet Sauvignon", 
+                                                                "Cabernet Sauvignon Grenache", "Cabernet Sauvignon-Barbera", 
+                                                                "Cabernet Sauvignon-Cabernet Franc", "Cabernet Sauvignon-Carmenère", 
+                                                                "Cabernet Sauvignon-Malbec", "Cabernet Sauvignon-Merlot", "Cabernet Sauvignon-Merlot-Shiraz", 
+                                                                "Cabernet Sauvignon-Sangiovese", "Cabernet Sauvignon-Shiraz", "Cabernet Sauvignon-Syrah", 
+                                                                "Cabernet Sauvignon-Tempranillo", "Cabernet-Malbec", "Cabernet-Shiraz", "Cabernet-Syrah", 
+                                                                "Çalkarasi", "Canaiolo", "Cannonau", "Caprettone", "Carcajolu", "Carignan", "Carignan-Grenache", 
+                                                                "Carignan-Syrah", "Carignane", "Carignano", "Carineña", "Cariñena-Garnacha", "Carmenère", 
+                                                                "Carmenère-Cabernet Sauvignon", "Carmenère-Syrah", "Carricante", "Casavecchia", "Castelão", 
+                                                                "Catalanesca", "Catarratto", "Cayuga", "Centesimino", "Cerceal", "Cercial", "Cesanese", 
+                                                                "Cesanese d'Affile", "Chambourcin", "Champagne Blend", "Chancellor", "Charbono", "Chardonel", 
+                                                                "Chardonnay", "Chardonnay Weissburgunder", "Chardonnay-Albariño", "Chardonnay-Pinot Blanc", 
+                                                                "Chardonnay-Pinot Gris", "Chardonnay-Riesling", "Chardonnay-Sauvignon", 
+                                                                "Chardonnay-Sauvignon Blanc", "Chardonnay-Semillon", "Chardonnay-Viognier", "Chasselas", 
+                                                                "Chelois", "Chenin Blanc", "Chenin Blanc-Chardonnay", "Chenin Blanc-Sauvignon Blanc", 
+                                                                "Chenin Blanc-Viognier", "Chinuri", "Ciliegiolo", "Cinsault", "Clairette", "Claret", 
+                                                                "Cococciola", "Coda di Volpe", "Códega do Larinho", "Colombard", "Colombard-Sauvignon Blanc", 
+                                                                "Colombard-Ugni Blanc", "Colorino", "Cortese", "Corvina", "Corvina, Rondinella, Molinara", 
+                                                                "Counoise", "Dafni", "Debit", "Diamond", "Dolcetto", "Doña Blanca", "Dornfelder", "Duras", 
+                                                                "Durella", "Durif", "Edelzwicker", "Ekigaïna", "Elbling", "Emir", "Encruzado", "Erbaluce", 
+                                                                "Espadeiro", "Falanghina", "Favorita", "Fer Servadou", "Fernão Pires", "Feteasca", 
+                                                                "Feteasca Neagra", "Feteasca Regala", "Fiano", "Folle Blanche", "Forcallà", "Francisa", 
+                                                                "Franconia", "Frankovka", "Frappato", "Freisa", "Friulano", "Früburgunder", "Fumé Blanc", 
+                                                                "Furmint", "G-S-M", "Gaglioppo", "Gamay", "Gamay Noir", "Gamza", "Garganega", "Garnacha", 
+                                                                "Garnacha Blanca", "Garnacha Blend", "Garnacha Tintorera", "Garnacha-Cabernet", 
+                                                                "Garnacha-Cariñena", "Garnacha-Monastrell", "Garnacha-Syrah", "Garnacha-Tempranillo", 
+                                                                "Gelber Muskateller", "Gelber Traminer", "Gewürztraminer", "Gewürztraminer-Riesling", 
+                                                                "Glera", "Godello", "Gouveio" , "Graciano", "Gra\u009aevina", "Gragnano", "Grauburgunder", 
+                                                                "Grecanico", "Grechetto", "Greco", "Greco Bianco", "Grenache", "Grenache Blanc", 
+                                                                "Grenache Blend", "Grenache Gris", "Grenache Noir", "Grenache-Carignan", "Grenache-Mourvèdre", 
+                                                                "Grenache-Shiraz", "Grenache-Syrah", "Grignolino", "Grillo", "Grolleau", "Groppello", 
+                                                                "Gros and Petit Manseng", "Gros Manseng", "Gros Plant", "Grüner Veltliner", "Hárslevelü", 
+                                                                "Hondarrabi Zuri", "Incrocio Manzoni", "Insolia", "Inzolia", "Irsai Oliver", "Jacquère", 
+                                                                "Jacquez", "Jaen", "Jampal", "Johannisberg Riesling", "Kadarka", "Kalecik Karasi", "Kangoun", 
+                                                                "Karalahna", "Karasakiz", "Kekfrankos", "Kerner", "Kinali Yapincak", "Kisi", "Kotsifali", 
+                                                                "Kuntra", "Lagrein", "Lambrusco", "Lambrusco di Sorbara", "Lambrusco Grasparossa", 
+                                                                "Lambrusco Salamino", "Lemberger", "Listán Negro", "Loin de l'Oeil", "Loureiro", "Loureiro-Arinto", 
+                                                                "Macabeo", "Macabeo-Chardonnay", "Macabeo-Moscatel", "Madeira Blend", "Madeleine Angevine", 
+                                                                "Magliocco", "Malagousia", "Malagouzia", "Malagouzia-Chardonnay", "Malbec", "Malbec Blend", 
+                                                                "Malbec-Bonarda", "Malbec-Cabernet", "Malbec-Cabernet Franc", "Malbec-Cabernet Sauvignon", 
+                                                                "Malbec-Carménère", "Malbec-Merlot", "Malbec-Petit Verdot", "Malbec-Syrah", "Malbec-Tannat", 
+                                                                "Malbec-Tempranillo", "Malvar", "Malvasia", "Malvasia Bianca", "Malvasia di Candia", 
+                                                                "Malvasia Fina", "Malvasia Istriana", "Malvasia Nera", "Malvasia-Viura", "Mandilaria", 
+                                                                "Mansois", "Mantonico", "Manzoni", "Marawi", "Maria Gomes", "Maria Gomes-Bical", "Marquette", 
+                                                                "Marsanne", "Marsanne-Roussanne", "Marsanne-Viognier", "Marselan", "Marzemino", "Mataro", 
+                                                                "Maturana", "Mavrodaphne", "Mavrokalavryta", "Mavrotragano", "Mavroudi", "Mavrud", "Mazuelo", "Melnik", "Melon", "Mencía", "Meritage", "Merlot", "Merlot-Argaman", "Merlot-Cabernet", "Merlot-Cabernet Franc", "Merlot-Cabernet Sauvignon", "Merlot-Grenache", "Merlot-Malbec", "Merlot-Petite Verdot", "Merlot-Shiraz", "Merlot-Syrah", "Merlot-Tannat", "Merseguera-Sauvignon Blanc", "Meseguera", "Misket", "Mission", "Molinara", "Monastrell", "Monastrell-Petit Verdot", "Monastrell-Syrah", "Mondeuse", "Monica", "Montepulciano", "Morava", "Morillon", "Morio Muskat", "Moscadello", "Moscatel", "Moscatel de Alejandría", "Moscatel Graúdo", "Moscatel Roxo", "Moscato", "Moscato di Noto", "Moscato Giallo", "Moscato Rosa", "Moschofilero", "Moschofilero-Chardonnay", "Mourvèdre", "Mourvèdre-Syrah", "Mtsvane", "Müller-Thurgau", "Muscadel", "Muscadelle", "Muscadine", "Muscat", "Muscat Blanc", "Muscat Blanc à Petits Grains", "Muscat Canelli", "Muscat d'Alexandrie", "Muscat Hamburg", "Muscat of Alexandria", "Muscatel", "Muskat", "Muskat Ottonel", "Muskateller", "Narince", "Nascetta", "Nasco", "Nebbiolo", "Negrette", "Negroamaro", "Nerello Cappuccio", "Nerello Mascalese", "Nero d'Avola", "Nero di Troia", "Neuburger", "Nielluciu", "Norton", "Nosiola", "Nuragus", "Ojaleshi", "Okuzgozu", "Ondenc", "Orange Muscat", "Orangetraube", "Other", "Otskhanuri Sapere", "País", "Pallagrello", "Pallagrello Blanco", "Pallagrello Nero", "Palomino", "Pansa Blanca", "Papaskarasi", "Paralleda", "Parraleta", "Passerina", "Pecorino", "Pedro Ximénez", "Perricone", "Petit Courbu", "Petit Manseng", "Petit Meslier", "Petit Verdot", "Petite Sirah", "Petite Verdot", "Picapoll", "Picolit", "Picpoul", "Piedirosso", "Pigato", "Pignoletto", "Pignolo", "Pinot Auxerrois", "Pinot Bianco", "Pinot Blanc", "Pinot Blanc-Chardonnay", "Pinot Blanc-Pinot Noir", "Pinot Blanc-Viognier", "Pinot Grigio", "Pinot Grigio-Sauvignon Blanc", "Pinot Gris", "Pinot Gris-Gewürztraminer", "Pinot Meunier", "Pinot Nero", "Pinot Noir", "Pinot Noir-Gamay", "Pinot Noir-Syrah", "Pinot-Chardonnay", "Pinotage", "Pinotage-Merlot","Piquepoul Blanc", "Plavac Mali", "Plyto","Port", "Portuguese Red", "Portuguese Rosé", "Portuguese Sparkling", "Portuguese White", "Portuguiser", "Posip", "Poulsard", "Premsal", "Prié Blanc", "Prieto Picudo", "Primitivo", "Prosecco", "Provence red blend", "Provence white blend", "Prugnolo Gentile", "Prunelard", "Pugnitello", "Rabigato", "Raboso", "Ramisco", "Rara Neagra", "Rebo", "Rebula" , "Red Blend", "Refosco", "Rhône-style Red Blend", "Rhône-style White Blend", "Ribolla Gialla", "Rieslaner", "Riesling", "Riesling-Chardonnay", "Rivaner", "Rkatsiteli", "Robola", "Roditis", "Roditis-Moschofilero", "Rolle", "Romorantin",  "Rosado", "Rosato", "Roscetto", "Rosé", "Rosenmuskateller", "Roter Traminer", "Roter Veltliner", "Rotgipfler", "Roussanne", "Roussanne-Grenache Blanc", "Roussanne-Marsanne", "Roussanne-Viognier", "Roviello", "Ruché", "Rufete", "Ryzlink Rýnský", "Sacy", "Sagrantino", "Sämling", "Sangiovese", "Sangiovese Cabernet", "Sangiovese Grosso", "Sangiovese-Cabernet Sauvignon", "Sangiovese-Syrah", "Saperavi", "Saperavi-Merlot", "Sauvignon", "Sauvignon Blanc", "Sauvignon Blanc-Assyrtiko", "Sauvignon Blanc-Chardonnay", "Sauvignon Blanc-Chenin Blanc", "Sauvignon Blanc-Sauvignon Gris", "Sauvignon Blanc-Semillon", "Sauvignon Blanc-Verdejo", "Sauvignon Gris", "Sauvignon Musqué", "Sauvignon-Sémillon", "Sauvignonasse", "Savagnin", "Savatiano", "Scheurebe", "Schiava", "Schwartzriesling", "Sciaccerellu", "Sémillon", "Semillon-Chardonnay", "Semillon-Sauvignon Blanc", "Sercial", "Seyval Blanc", "Sherry", "Shiraz", "Shiraz-Cabernet", "Shiraz-Cabernet Sauvignon", "Shiraz-Grenache", "Shiraz-Malbec", "Shiraz-Mourvèdre", "Shiraz-Roussanne", "Shiraz-Tempranillo", "Shiraz-Viognier", "Sideritis", "Siegerrebe", "Silvaner", "Silvaner-Traminer", "Siria", "Sirica", "Sousão", "Souzao", "Sparkling Blend", "Spätburgunder", "St. Laurent", "St. Vincent", "Susumaniello", "Sylvaner", "Symphony", "Syrah", "Syrah-Bonarda", "Syrah-Cabernet", "Syrah-Cabernet Franc", "Syrah-Cabernet Sauvignon", "Syrah-Carignan", "Syrah-Grenache","Syrah-Grenache-Viognier", "Syrah-Malbec", "Syrah-Merlot", "Syrah-Mourvèdre", "Syrah-Petit Verdot", "Syrah-Petite Sirah", "Syrah-Tempranillo", "Syrah-Viognier", "Tămâioasă Românească", "Tamianka", "Tamjanika", "Tannat", "Tannat-Cabernet", "Tannat-Cabernet Franc", "Tannat-Merlot", "Tannat-Syrah", "Tempranillo", "Tempranillo Blanco", "Tempranillo Blend", "Tempranillo-Cabernet Sauvignon", "Tempranillo-Garnacha", "Tempranillo-Malbec", "Tempranillo-Merlot", "Tempranillo-Shiraz", "Tempranillo-Syrah", "Tempranillo-Tannat", "Teran", "Teroldego", "Teroldego Rotaliano", "Terrantez", "Thrapsathiri", "Timorasso", "Tinta Amarela", "Tinta Barroca", "Tinta Cao", "Tinta de Toro", "Tinta del Pais", "Tinta del Toro", "Tinta Fina", "Tinta Francisca", "Tinta Madeira", "Tinta Miúda", "Tinta Negra Mole", "Tinta Roriz", "Tintilia", "Tinto del Pais", "Tinto Fino", "Tinto Velasco", "Tocai", "Tocai Friulano", "Tokaji", "Tokay", "Tokay Pinot Gris", "Torbato", "Torontel", "Torrontés", "Touriga", "Touriga Franca", "Touriga Nacional", "Touriga Nacional Blend", "Touriga Nacional-Cabernet Sauvignon", "Trajadura", "Traminer", "Traminette", "Trebbiano", "Trebbiano di Lugana", "Trebbiano Spoletino", "Treixadura", "Trepat", "Trincadeira", "Trollinger", "Trousseau", "Trousseau Gris", "Tsapournakos", "Tsolikouri", "Turbiana", "Ugni Blanc", "Ugni Blanc-Colombard", "Uva di Troia", "Uvalino", "Valdiguié", "Valvin Muscat", "Veltliner", "Verdeca", "Verdejo", "Verdejo-Sauvignon Blanc", "Verdejo-Viura", "Verdelho", "Verdicchio", "Verdil", "Verdosilla", "Verduzzo", "Verduzzo Friulano", "Vermentino", "Vermentino Nero", "Vernaccia", "Vespaiolo", "Vespolina", "Vidadillo", "Vidal", "Vidal Blanc", "Vignoles", "Vilana", "Vinhão", "Viognier", "Viognier-Chardonnay", "Viognier-Gewürztraminer", "Viognier-Grenache Blanc", "Viognier-Marsanne", "Viognier-Roussanne", "Viognier-Valdiguié", "Viosinho", "Vital", "Vitovska", "Viura", "Viura-Chardonnay", "Viura-Verdejo", "Vranac", "Vranec", "Weissburgunder", "Welschriesling", "White Blend", "White Port", "White Riesling", "Xarel-lo", "Xinisteri", "Xinomavro", "Xynisteri", "Yapincak", "Zelen", "Zibibbo", "Zierfandler-Rotgipfler", "Zinfandel", "Zlahtina", "Zweigelt"),
+                                                 multiple = TRUE),
+                                  sliderInput("price", label = "Price Range", min = 2, max = 3500, value = c(2, 3500))
+                                ),
+                                mainPanel(textOutput("text"),
+                                          tableOutput("table"))
+                              )
+                            )  
+                            ),
               
                     tabItem(tabName = "growth", 
                             #fluidRow(
