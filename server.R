@@ -23,6 +23,7 @@ function (input, output) {
   
   countrywineproduction<- read_csv("Country Wine Production.csv")
   worldwinevolume<- read_csv("World Wine Production Volume.csv")
+  worldtemp<- read_csv("WorldChangeInTemp.csv")
 
   wine_loc$Latitude <- as.numeric(wine_loc$Latitude)
   wine_loc$Longitude <- as.numeric(wine_loc$Longitude)
@@ -92,5 +93,15 @@ function (input, output) {
               #xlab = "Year")
         
       })
+    output$worldtempPlot<- renderPlot({
+      ggplot(worldtemp, aes(Year, Temperature))+ 
+        geom_point(color= "red", size= 3)+
+        geom_smooth()
+        
+      
+      
+    }
+      
+    )
     
 }

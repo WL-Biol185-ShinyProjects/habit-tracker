@@ -133,6 +133,14 @@ dashboardPage(skin = "blue",
                                   title = "Changes in Wine Volume Production due to Climate Change",
                                   tabPanel("World Wide Wine Production", plotOutput("worldvolumePlot", width = "100%")), 
                                   tabPanel("Individual Countries' Wine Production")
+                                )
+                              ), 
+                              fluidRow(
+                                tabBox(
+                                  title = "Changes in Global Temperature", 
+                                  tabPanel("Global Temperature Anomaly Changes Over Time", plotOutput("worldtempPlot"))
+                                )
+                              )
                                     
                                 
                               #sidebarLayout(
@@ -145,9 +153,9 @@ dashboardPage(skin = "blue",
                                # mainPanel = (
                                  # plotOutput("worldwineplot")
                                 )
-                                )
+                                
                              
-                            )
+                            
                             
                       
                     ),
