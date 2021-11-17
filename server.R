@@ -64,7 +64,7 @@ function (input, output) {
   
   
   output$text <- renderText({"Based on your choices, here are 10 wines we recommend 
-                              (sorted by WineEnthusiast Points)"})
+                              (sorted by WineEnthusiast Points):"})
   output$table <- renderTable({head(your.data(), 10)})
   
  pal <- colorFactor(pal = c("green", "blue", "purple", "yellow", "black"), domain = c("96", "97", "98", "99", "100"))
