@@ -22,14 +22,18 @@ function (input, output) {
   wine_loc <- data.frame(dataset, stringAsFactors = FALSE)
 
   wine_loc <- read.csv("Wine Location2.csv")
+  DTWine <- read_csv("DTWine.csv")
   
   countrywineproduction<- read_csv("Country Wine Production.csv")
   worldwinevolume<- read_csv("World Wine Production Volume.csv")
+  worldtemp<- read_csv("WorldChangeInTemp.csv")
+
   
   clean_wine <- read_csv("clean_wine.csv")
   cleaner_wine <- clean_wine %>%
     select(2:10) 
   cleanest_wine <- cleaner_wine[order(cleaner_wine$points, decreasing = TRUE), ]
+
 
   wine_loc$Latitude <- as.numeric(wine_loc$Latitude)
   wine_loc$Longitude <- as.numeric(wine_loc$Longitude)
@@ -106,9 +110,7 @@ function (input, output) {
               xlab= "Year")
     
     })
-    output$data <- DT:: renderDataTable (datatable(
-       wine_loc), filter= c("top", "none", "bottom"),
-       colnames = c("Number", "Country", "Description", "Designation", "Points", "Price", "Province", "Region 1", "Region 2", "Variety", "Wineryy", "Lat", "Long"))
+    output$data <- DT:: renderDataTable (datatable(DTWine), colnames= c("Number", "Country", "Description", "Designation", "Points", "Price", "Province", "Region 1", "Region 2", "Variety", "Wineryy", "Lat", "Long"))
     
     output$worldvolumePlot<- renderPlot({
         ggplot(worldwinevolume, aes(Year, Mhl))+ 
@@ -121,5 +123,15 @@ function (input, output) {
               #xlab = "Year")
         
       })
+    output$worldtempPlot<- renderPlot({
+      ggplot(worldtemp, aes(Year, Temperature))+ 
+        geom_point(color= "red", size= 3)+
+        geom_smooth()
+        
+      
+      
+    }
+      
+    )
     
 }

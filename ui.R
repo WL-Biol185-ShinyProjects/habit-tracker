@@ -20,9 +20,9 @@ dashboardPage(skin = "blue",
                 sidebarMenu(
                   menuItem("Introduction", tabName = "intro", icon = icon("info")), 
                   menuItem("Map", tabName = "map", icon = icon("map-marker-alt")), 
-                  menuItem("Data Table", tabName = "datatable", icon = icon("wine-glass")),
                   menuItem("Find a Wine!", tabName = "finder", icon = icon("search")),
                   menuItem("Wine Growth", tabName = "growth", icon = icon("chart-line")),
+                  menuItem("Data Table", tabName = "datatable", icon = icon("wine-glass")),
                   menuItem("References", tabName = "references", icon = icon("toolbox"))
                 )
               ), 
@@ -88,43 +88,36 @@ dashboardPage(skin = "blue",
                                 ),
                   tabItem(tabName = "map", 
                           fluidRow(
-                            p("     Choose a country to see each of its most highly ranked wines and their information!"), 
                             box(
-                              width = 12,
                               title= "Locations of the Most Highly Ranked Wines", 
-                              sidebarLayout(
+                              "Within this interactive map, you will find each countries' most highly ranked wines along with each of their price, type, origin, and specific winery. ", 
+                              background = "olive"), 
+                            box(
+                              title = "How To Use This Page", 
+                              "Select a country to find its most highly rated and well known wines. Zoom in on certain clusters to see the various ratings within each country. Click on each bubble to find information on that specific wine.", 
+                              background = "light-blue"
+                              
+                            ),
+                            selectInput(inputId = "country", 
+                                        label = "Select a Country", 
+                                        choices = list("All countries", "Argentina","Australia", "Austria", "France", "Germany", "Italy", "Portugal", "Spain", "US"), 
+                                        selected = "country"), 
+                            leafletOutput("wineMap")
+                              
+                            
+                           # sidebarLayout(
+                              #sidebarPanel(
+                                #selectInput(
+                                    #inputId = "country",
+                                    #label = "Select a country", 
+                                    #choices = list("All countries", "Argentina","Australia", "Austria", "France", "Germany", "Italy", "Portugal", "Spain", "US"),
+                                    #selected = "country")), 
+                              #mainPanel(leafletOutput("wineMap")
                                 
-                                sidebarPanel( 
-                                  selectInput(
-                                    inputId = "country",
-                                    label = "Select a country", 
-                                    choices = list("All countries", "Argentina","Australia", "Austria", "France", "Germany", "Italy", "Portugal", "Spain", "US"),
-                                    selected = "country")), 
-                                mainPanel(
-                                    leafletOutput("wineMap")
-                                  )
-                                    )
-                                ))), 
-                          
-                    tabItem(tabName = "datatable", 
-                            fluidRow(
-                              p("explain datatable here"), 
-                              box(
-                                title = "Complete Data Table of all Wines", 
-                                width = 12, 
-                                sidebarLayout(
-                                  sidebarPanel(
-                                    selectInput(
-                                      inputId = "country",
-                                      label = "Select a country ", 
-                                      choices = list("All Countries", "Argentina", "Australia", "Austria", "France", "Germany", "Italy", "Portugal", "Spain", "US"))), 
-                                 mainPanel(
-                                        DT :: dataTableOutput ("data"))
-                                        
-                                      )
-                                    )
-                                  )
-                         ) ,
+                                  
+                                    )),
+                               
+                        
                     tabItem(tabName = "finder",
                             fluidPage(
                               titlePanel("Find a Wine!"),
@@ -207,6 +200,7 @@ dashboardPage(skin = "blue",
                             ),
               
                     tabItem(tabName = "growth", 
+              
                             #fluidRow(
                             fluidPage(
                               titlePanel= ("Changes in Wine Volume Production, unit=mhl"), 
@@ -215,6 +209,15 @@ dashboardPage(skin = "blue",
                                   title = "Changes in Wine Volume Production due to Climate Change",
                                   tabPanel("World Wide Wine Production", plotOutput("worldvolumePlot", width = "100%")), 
                                   tabPanel("Individual Countries' Wine Production")
+                                )
+                              ), 
+                    
+                              fluidRow(
+                                tabBox(
+                                  title = "Changes in Global Temperature", 
+                                  tabPanel("Global Temperature Anomaly Changes Over Time", plotOutput("worldtempPlot"))
+                                )
+                              )
                                     
                                 
                               #sidebarLayout(
@@ -227,12 +230,34 @@ dashboardPage(skin = "blue",
                                # mainPanel = (
                                  # plotOutput("worldwineplot")
                                 )
-                                )
+                                
                              
-                            )
+                            
                             
                       
                     ),
+                  
+                  tabItem(tabName = "datatable", 
+                          titlePanel("Data Explorer"),
+                          fluidPage(
+                            div(dataTableOutput("data"))
+                            # p("explain datatable here"), 
+                            # box(
+                            # title = "Complete Data Table of all Wines", 
+                            # width = 12, 
+                            #sidebarLayout(
+                            # sidebarPanel(
+                            #selectInput(
+                            #inputId = "country",
+                            # label = "Select a country ", 
+                            #choices = list("All Countries", "Argentina", "Australia", "Austria", "France", "Germany", "Italy", "Portugal", "Spain", "US"))), 
+                            # mainPanel(
+                            # DT :: dataTableOutput ("data"))
+                            
+                            
+                            
+                          )
+                  ) ,
                                 
                         tabItem(tabName = "references", 
                                 fluidRow(
@@ -245,6 +270,7 @@ dashboardPage(skin = "blue",
                         )
               )
 )
+
                               
 
                             

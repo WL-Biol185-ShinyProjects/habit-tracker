@@ -1,12 +1,12 @@
-# habit-tracker
+# Wine Helper
 
-An app to help people change current habits and form healthier ones
-helps people develop a plan for each of their habits and goals
+Ann app that educates viewers about wine, helps them explore new wines, 
+and educates them on the impacts of climate change on grape yield.
 =======
 
+This app contains 5 pages: an introduction for the user about wine and 
+grape growing, an interactive world map of the highest rated wines, 
+an interactive function to explore new wines by type and flavor, 
+and a graph showing how global temperatures have impacted grape yield 
+over the past few years. 
 
-An app to help people change their current habits and form healthier ones.
-## Here is a change! -Lexi
-We are focusing on sleep, substance use, and exercise. 
-
-##Adding another! -Lauren 
