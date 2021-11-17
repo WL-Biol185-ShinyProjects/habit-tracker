@@ -22,10 +22,10 @@ function (input, output) {
   wine_loc <- data.frame(dataset, stringAsFactors = FALSE)
 
   wine_loc <- read.csv("Wine Location2.csv")
+  DTWine <- read_csv("DTWine.csv")
   
   countrywineproduction<- read_csv("Country Wine Production.csv")
   worldwinevolume<- read_csv("World Wine Production Volume.csv")
-
   worldtemp<- read_csv("WorldChangeInTemp.csv")
 
   
@@ -100,8 +100,7 @@ function (input, output) {
               xlab= "Year")
     
     })
-    output$data <- DT:: renderDataTable (datatable(
-       wine_loc), colnames= c("Number", "Country", "Description", "Designation", "Points", "Price", "Province", "Region 1", "Region 2", "Variety", "Wineryy", "Lat", "Long"))
+    output$data <- DT:: renderDataTable (datatable(DTWine), colnames= c("Number", "Country", "Description", "Designation", "Points", "Price", "Province", "Region 1", "Region 2", "Variety", "Wineryy", "Lat", "Long"))
     
     output$worldvolumePlot<- renderPlot({
         ggplot(worldwinevolume, aes(Year, Mhl))+ 
