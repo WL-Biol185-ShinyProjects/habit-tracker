@@ -79,8 +79,7 @@ function (input, output) {
     
     })
     output$data <- DT:: renderDataTable (datatable(
-       wine_loc), filter= c("top", "none", "bottom"),
-       colnames = c("Number", "Country", "Description", "Designation", "Points", "Price", "Province", "Region 1", "Region 2", "Variety", "Wineryy", "Lat", "Long"))
+       wine_loc), colnames= c("Number", "Country", "Description", "Designation", "Points", "Price", "Province", "Region 1", "Region 2", "Variety", "Wineryy", "Lat", "Long"))
     
     output$worldvolumePlot<- renderPlot({
         ggplot(worldwinevolume, aes(Year, Mhl))+ 
