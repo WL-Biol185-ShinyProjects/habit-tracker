@@ -20,9 +20,9 @@ dashboardPage(skin = "blue",
                 sidebarMenu(
                   menuItem("Introduction", tabName = "intro", icon = icon("info")), 
                   menuItem("Map", tabName = "map", icon = icon("map-marker-alt")), 
-                  menuItem("Data Table", tabName = "datatable", icon = icon("wine-glass")),
                   menuItem("Find a Wine!", tabName = "finder", icon = icon("search")),
                   menuItem("Wine Growth", tabName = "growth", icon = icon("chart-line")),
+                  menuItem("Data Table", tabName = "datatable", icon = icon("wine-glass")),
                   menuItem("References", tabName = "references", icon = icon("toolbox"))
                 )
               ), 
@@ -117,28 +117,7 @@ dashboardPage(skin = "blue",
                                   
                                     )),
                                
-                          
-                    tabItem(tabName = "datatable", 
-                            titlePanel("Data Explorer"),
-                            fluidPage(
-                              div(dataTableOutput("data"))
-                             # p("explain datatable here"), 
-                             # box(
-                               # title = "Complete Data Table of all Wines", 
-                               # width = 12, 
-                                #sidebarLayout(
-                                 # sidebarPanel(
-                                    #selectInput(
-                                      #inputId = "country",
-                                     # label = "Select a country ", 
-                                      #choices = list("All Countries", "Argentina", "Australia", "Austria", "France", "Germany", "Italy", "Portugal", "Spain", "US"))), 
-                                # mainPanel(
-                                       # DT :: dataTableOutput ("data"))
-                                        
-                                      
-                                      
-                                  )
-                         ) ,
+                        
                     tabItem(tabName = "finder",
                             fluidPage(
                               titlePanel("Find a Wine!"),
@@ -256,6 +235,28 @@ dashboardPage(skin = "blue",
                             
                       
                     ),
+                  
+                  tabItem(tabName = "datatable", 
+                          titlePanel("Data Explorer"),
+                          fluidPage(
+                            div(dataTableOutput("data"))
+                            # p("explain datatable here"), 
+                            # box(
+                            # title = "Complete Data Table of all Wines", 
+                            # width = 12, 
+                            #sidebarLayout(
+                            # sidebarPanel(
+                            #selectInput(
+                            #inputId = "country",
+                            # label = "Select a country ", 
+                            #choices = list("All Countries", "Argentina", "Australia", "Austria", "France", "Germany", "Italy", "Portugal", "Spain", "US"))), 
+                            # mainPanel(
+                            # DT :: dataTableOutput ("data"))
+                            
+                            
+                            
+                          )
+                  ) ,
                                 
                         tabItem(tabName = "references", 
                                 fluidRow(
