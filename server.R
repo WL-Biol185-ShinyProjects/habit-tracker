@@ -76,7 +76,7 @@ function (input, output) {
   
   
   output$text <- renderText({"Based on your choices, here are the wines we recommend 
-                              (sorted by WineEnthusiast Points):"})
+                             (sorted by WineEnthusiast Points):"})
   output$table <- renderTable({
     final.data <- head(your.data(), input$number)
     final.data()

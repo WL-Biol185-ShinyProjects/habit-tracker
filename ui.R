@@ -198,12 +198,13 @@ dashboardPage(skin = "blue",
                                 ),
                                 mainPanel(
                                   tabsetPanel(type = "tabs", 
-                                              tabPanel("Table", textOutput("text"),
+                                              tabPanel("Table", 
+                                                       textOutput("text"),
                                               tableOutput("table")), 
                                               tabPanel("Best Deals", plotOutput("plot"))
                               )
                             )  
-                            ),
+                            ))),
               
                     tabItem(tabName = "growth", 
                           
