@@ -220,22 +220,23 @@ dashboardPage(skin = "blue",
                             ),
               
                     tabItem(tabName = "growth", 
-              
-                            #fluidRow(
-                            fluidPage(
-                              titlePanel= ("Changes in Wine Volume Production, unit=mhl"), 
-                              fluidRow(
-                                tabBox(
-                                  title = "Changes in Wine Volume Production due to Climate Change",
-                                  tabPanel("World Wide Wine Production", plotOutput("worldvolumePlot", width = "100%")), 
-                                  tabPanel("Individual Countries' Wine Production")
-                                )
-                              ), 
+                          
+                           fluidPage(
+                             titlePanel= "TITLE", 
+                               fluidRow(
+                                 tabBox(
+                                  width = 6, side= "left", 
+                                  tabPanel("Yearly Worldwide Wine Production, units:mhl", plotOutput("worldvolumePlot", width = "100%"))), 
+                                  
+                                  tabBox(
+                                    width = 6, side = "right",
+                                    tabPanel("Global Temperature Anomaly Changes Over Time", plotOutput("worldtempPlot"), width= "100%"))
+                                
+                              ) , 
                     
                               fluidRow(
-                                tabBox(
-                                  title = "Changes in Global Temperature", 
-                                  tabPanel("Global Temperature Anomaly Changes Over Time", plotOutput("worldtempPlot"))
+                                box( title = "Explain Changes in Global Temperature and how they are affecting wine grapes"
+                                  #tabPanel("Global Temperature Anomaly Changes Over Time", plotOutput("worldtempPlot"))
                                 )
                               )
                                     
