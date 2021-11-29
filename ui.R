@@ -215,9 +215,14 @@ dashboardPage(skin = "blue",
                               ) , 
                     
                               fluidRow(
-                                box( title = "Explain Changes in Global Temperature and how they are affecting wine grapes"
+                                box( title = "Climate Change's Impact on Wine Production", width = NULL, background = "olive",
+                                     "Wine grapes around the world are all sensitive to temperature and moisture changes. These rising global temperatures are causing wine grapes to ripen faster leading to sweeter and more alcoholic wines."
                                   #tabPanel("Global Temperature Anomaly Changes Over Time", plotOutput("worldtempPlot"))
-                                )
+                                ), 
+                                box(title= "Cooler Conditions",
+                                    "Less ripeness in fruit, more tart, higher acidity, lower sugar, and lower alchohol content.", 
+                                    width = 6, side= "left", background = "blue"), 
+                                box(title= "Warmer Conditions", "More ripeness in fruit, softer and sweeter fruit flavor, lower acidity, higher sugar, and higher alcohol content.",  width = 6, side= "right", background = "red")
                               )
                                     
                                 
@@ -261,10 +266,31 @@ dashboardPage(skin = "blue",
                   ) ,
                                 
                         tabItem(tabName = "references", 
+                                titlePanel("References for Data Sets and Sources used in this Dashboard"),
                                 fluidRow(
-                                  titlePanel= ("References of Data Sets and Sources Used in this Dashboard"),
-                                  
-                                  p("insert links here")
+                                  column(width=6,
+                                  box("1. Average Temperature per country per year. (n.d.). Retrieved November 29, 2021, from   
+https://kaggle.com/akshaychavan/average-temperature-per-country-per-year", side= "left", width= NULL), 
+                                  box("2. Climate Change Is Rapidly Altering Wine As We Know It | Wine Enthusiast. (n.d.). Retrieved  
+November 29, 2021, from https://www.winemag.com/2020/02/03/wine-climate-change/", side= "left", width= NULL), 
+                                  box("3. How Wine Lovers Geek Out: The Best Insider Websites—WSJ. (n.d.). Retrieved November 29,  
+2021, from https://www.wsj.com/articles/how-wine-lovers-geek-out-the-best-insider-	
+websites-11632412835?mod=article_relatedinline", side= "left", width= NULL), 
+                                  box("4. The History Of Wine Timeline | How Wine Colonized The World. (n.d.). VinePair. Retrieved  
+November 29, 2021, from https://vinepair.com/wine-colonized-world-wine-history/", side= "left", width= NULL), 
+                                  box("5. Updated Wine Enthusiast Reviews. (n.d.). Retrieved November 29, 2021, from  
+https://kaggle.com/manyregression/updated-wine-enthusiast-review", side= "left", width= NULL), 
+                                  box("6. What Are the Different Types of Wine Grapes? A Guide to the Various Types of Red and White  
+Wine Grapes in the World—2021—MasterClass. (n.d.). Retrieved November 29, 2021, 	
+from https://www.masterclass.com/articles/what-are-the-different-types-of-wine-grapes-	
+a-guide-to-the-various-types-of-red-and-white-wine-grapes-in-the-world#what-are-the 	
+different-red-wine-grapes", side= "left", width= NULL), 
+                                  box("7. What Climate Change Might Do to Your Favorite Wine—WSJ. (n.d.). Retrieved November 29,  
+2021, from https://www.wsj.com/articles/what-climate-change-might-do-to-your-	
+favorite-wine-11628778962", side= "left", width= NULL), 
+                                  box("8. Wine Reviews. (n.d.). Retrieved November 29, 2021, from https://kaggle.com/zynicide/wine-	
+reviews 
+", side= "left", width= NULL))
                                 )
                           
                                 )
