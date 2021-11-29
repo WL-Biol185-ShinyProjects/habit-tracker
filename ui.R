@@ -277,8 +277,6 @@ dashboardPage(skin = "blue",
                                 )
                         )
               )
-)
-)
                               
 
                             
