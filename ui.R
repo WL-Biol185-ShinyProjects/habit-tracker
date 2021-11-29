@@ -27,7 +27,6 @@ dashboardPage(skin = "blue",
                   menuItem("References", tabName = "references", icon = icon("toolbox"))
                 )
               ), 
-)
               
               dashboardBody(
                 tabItems(
@@ -279,7 +278,6 @@ dashboardPage(skin = "blue",
               )
 
 )
-
 
 
                             
