@@ -75,11 +75,15 @@ function (input, output) {
   })
   
   
-  output$text <- renderText({"Based on your choices, here are 10 wines we recommend 
+  output$text <- renderText({"Based on your choices, here are the wines we recommend 
                               (sorted by WineEnthusiast Points):"})
   output$table <- renderTable({
-    head(your.data(), 10)
+    final.data <- head(your.data(), input$number)
+    final.data()
     })
+  output$plot <- renderPlot({
+    ggplot(final.data, aes(points, price, color = country)) + geom_point()
+  })
   
  pal <- colorFactor(pal = c("green", "blue", "purple", "yellow", "black"), domain = c("96", "97", "98", "99", "100"))
   
