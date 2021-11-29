@@ -72,17 +72,20 @@ function (input, output) {
       
     newest <- newer %>%
       filter(price >= input$price[1] & price <= input$price[2])
+    
+    newestest <- newest %>%
+      head(input$number)
   })
   
   
   output$text <- renderText({"Based on your choices, here are the wines we recommend 
                              (sorted by WineEnthusiast Points):"})
   output$table <- renderTable({
-    final.data <- head(your.data(), input$number)
-    final.data()
+    ## final.data <- head(your.data(), input$number)
+    your.data()
     })
   output$plot <- renderPlot({
-    ggplot(final.data, aes(points, price, color = country)) + geom_point()
+    ggplot(your.data(), aes(points, price, color = country)) + geom_point()
   })
   
  pal <- colorFactor(pal = c("green", "blue", "purple", "yellow", "black"), domain = c("96", "97", "98", "99", "100"))

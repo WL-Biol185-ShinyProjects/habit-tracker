@@ -200,7 +200,7 @@ dashboardPage(skin = "blue",
                                               tabPanel("Table", 
                                                        textOutput("text"),
                                               tableOutput("table")), 
-                                              tabPanel("Best Deals", plotOutput("plot"))
+                                              tabPanel("Graph", plotOutput("plot"))
                               )
                             )  
                             ))),
