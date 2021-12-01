@@ -252,7 +252,8 @@ dashboardPage(skin = "blue",
                   tabItem(tabName = "datatable", 
                           titlePanel("Data Explorer"),
                           fluidPage(
-                            div(dataTableOutput("data"))
+                            div(dataTableOutput("data")),
+                            downloadButton("downloadData", label = "Download")
                             # p("explain datatable here"), 
                             # box(
                             # title = "Complete Data Table of all Wines", 

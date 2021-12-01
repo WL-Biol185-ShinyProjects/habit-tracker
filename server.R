@@ -141,4 +141,17 @@ function (input, output) {
       
     )
     
+    output$downloadData <- downloadHandler(
+      filename = function() {
+        paste("clean_wine-", Sys.Date(), ".csv", sep ="")
+      },
+      content = function(con) {
+        write.csv(clean_wine, con)
+      }
+    )
 }
+
+     
+     
+     
+     
