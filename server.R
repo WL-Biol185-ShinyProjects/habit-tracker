@@ -27,6 +27,7 @@ function (input, output) {
   countrywineproduction<- read_csv("Country Wine Production.csv")
   worldwinevolume<- read_csv("World Wine Production Volume.csv")
   worldtemp<- read_csv("WorldChangeInTemp.csv")
+  winetempandvolume<- read_csv("winetempandvolume.csv")
 
   
   clean_wine <- read_csv("clean_wine.csv")
@@ -130,6 +131,12 @@ function (input, output) {
               #xlab = "Year")
         
       })
+    output$volumetempPlot<- renderPlot({
+      ggplot(winetempandvolume, aes(Temperature, Mhl))+ 
+      geom_point(color= "red", size= 3)+ 
+        geom_smooth()
+    })
+
     output$worldtempPlot<- renderPlot({
       ggplot(worldtemp, aes(Year, Temperature))+ 
         geom_point(color= "red", size= 3)+

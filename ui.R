@@ -212,11 +212,12 @@ dashboardPage(skin = "blue",
                                fluidRow(
                                  tabBox(
                                   width = 6, side= "left", 
-                                  tabPanel("Yearly Worldwide Wine Production, units:mhl", plotOutput("worldvolumePlot", width = "100%"))), 
-                                  
-                                  tabBox(
-                                    width = 6, side = "right",
-                                    tabPanel("Global Temperature Anomaly Changes Over Time", plotOutput("worldtempPlot"), width= "100%"))
+                                  tabPanel("Yearly Worldwide Wine Production, units:mhl", plotOutput("worldvolumePlot", width = "100%")), 
+                                  tabPanel("Global Temperature Anomaly Changes Over Time", plotOutput("worldtempPlot"), width= "100%")), 
+                                 tabBox(
+                                   width = 6, side = "right", 
+                                   tabPanel("Yearly Wine Production vs. Yearly Temperature", plotOutput("volumetempPlot"), width= "100%"))
+                           
                                 
                               ) , 
                     
