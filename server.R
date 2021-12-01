@@ -59,7 +59,7 @@ function (input, output) {
                             
   #add 5 colors, make legend 
   
-  your.data <- eventReactive(input$submit, {
+  your.data <- reactive({
     new <- cleanest_wine %>%
       filter(color == input$color)
     
@@ -74,18 +74,21 @@ function (input, output) {
       filter(price >= input$price[1] & price <= input$price[2])
     
     newestest <- newest %>%
-      head(input$number)
+      head(input$number) %>%
+      mutate(value_rating = points/price) 
   })
-  
   
   output$text <- renderText({"Based on your choices, here are the wines we recommend 
                              (sorted by WineEnthusiast Points):"})
-  output$table <- renderTable({
-    ## final.data <- head(your.data(), input$number)
+  output$table <- renderDataTable({
     your.data()
     })
+  
+  output$text2 <- renderText({"Here are the value ratings (Wine Enthusiast Points per Dollar) of the wines we found for you:"})
+  
   output$plot <- renderPlot({
-    ggplot(your.data(), aes(points, price, color = country)) + geom_point()
+    ##arrange(your.data(), value_rating)
+    ggplot(your.data(), aes(title, value_rating, color = country)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 45, hjust = 1))
   })
   
  pal <- colorFactor(pal = c("green", "blue", "purple", "yellow", "black"), domain = c("96", "97", "98", "99", "100"))
