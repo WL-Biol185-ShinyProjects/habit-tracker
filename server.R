@@ -132,7 +132,7 @@ function (input, output) {
     output$worldvolumePlot<- renderPlot({
         ggplot(worldwinevolume, aes(Year, Mhl))+ 
         geom_point(color= "red", size= 3)+ 
-        geom_smooth() +
+        geom_smooth() +labs(y= "Worldwide Wine Grape Production (units: Mhl)")+
         scale_x_continuous(breaks = c(2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021))
       #barplot(countrywineproduction [,input$country]*1000,
               #main= input$country,
@@ -143,13 +143,13 @@ function (input, output) {
     output$volumetempPlot<- renderPlot({
       ggplot(winetempandvolume, aes(Temperature, Mhl))+ 
       geom_point(color= "red", size= 3)+ 
-        geom_smooth()
+        geom_smooth() + labs(x= "Temperature Anomaly") +labs(y="Worldwide Wine Grape Production (units: Mhl)")
     })
 
     output$worldtempPlot<- renderPlot({
       ggplot(worldtemp, aes(Year, Temperature))+ 
         geom_point(color= "red", size= 3)+
-        geom_smooth()
+        geom_smooth()+ labs(y= "Temperature Anomaly")
         
       
       

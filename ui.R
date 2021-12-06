@@ -91,7 +91,7 @@ dashboardPage(skin = "blue",
                           fluidRow(
                             box(
                               title= "Locations of the Most Highly Ranked Wines", 
-                              "Within this interactive map, you will find each countries' most highly ranked wines along with each of their price, type, origin, and specific winery. ", 
+                              "Within this interactive map, you will find each countries' most highly ranked wines along with each of their price, type, origin, specific winery, and a brief description. ", 
                               background = "olive"), 
                             box(
                               title = "How To Use This Page", 
@@ -212,7 +212,7 @@ dashboardPage(skin = "blue",
                                fluidRow(
                                  tabBox(
                                   width = 6, side= "left", 
-                                  tabPanel("Yearly Worldwide Wine Production, units:mhl", plotOutput("worldvolumePlot", width = "100%")), 
+                                  tabPanel("Yearly Changes in Worldwide Wine Production", plotOutput("worldvolumePlot", width = "100%")), 
                                   tabPanel("Global Temperature Anomaly Changes Over Time", plotOutput("worldtempPlot"), width= "100%")), 
                                  tabBox(
                                    width = 6, side = "right", 
@@ -229,7 +229,8 @@ dashboardPage(skin = "blue",
                                 box(title= "Cooler Conditions",
                                     "Less ripeness in fruit, more tart, higher acidity, lower sugar, and lower alchohol content.", 
                                     width = 6, side= "left", background = "blue"), 
-                                box(title= "Warmer Conditions", "More ripeness in fruit, softer and sweeter fruit flavor, lower acidity, higher sugar, and higher alcohol content.",  width = 6, side= "right", background = "red")
+                                box(title= "Warmer Conditions", "More ripeness in fruit, softer and sweeter fruit flavor, lower acidity, higher sugar, and higher alcohol content.",  width = 6, side= "right", background = "red"), 
+                                box(title= "What is Temperature Anomaly?", "This numerical value demonstrates the increase or decrease in temperature compared to the previous year's longterm temperature average. A positive value signifies a rise in temperature while a negative value signifies a decrease in temperature compared to the previous year", background = "olive", side= "left")
                               )
                                     
                                 
