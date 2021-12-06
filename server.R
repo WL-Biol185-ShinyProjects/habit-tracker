@@ -89,7 +89,6 @@ function (input, output) {
   output$text2 <- renderText({"Here are the value ratings (Wine Enthusiast Points per Dollar) of the wines we found for you:"})
   
   output$plot <- renderPlot({
-    ##arrange(your.data(), value_rating)
     ggplot(your.data(), aes(title, value_rating, fill = country)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + xlab("Name of Wine") + ylab("Value Rating")
   })
   
