@@ -24,14 +24,14 @@ function (input, output) {
   wine_loc <- read.csv("Wine Location2.csv")
   DTWine <- read.csv("DTWine.csv")
   
-  countrywineproduction<- read_csv("Country Wine Production.csv")
-  worldwinevolume<- read_csv("World Wine Production Volume.csv")
-  worldtemp<- read_csv("WorldChangeInTemp.csv")
-  winetempandvolume<- read_csv("winetempandvolume.csv")
+  countrywineproduction<- read.csv("Country Wine Production.csv")
+  worldwinevolume<- read.csv("World Wine Production Volume.csv")
+  worldtemp<- read.csv("WorldChangeInTemp.csv")
+  winetempandvolume<- read.csv("winetempandvolume.csv")
   
 
   
-  clean_wine <- read_csv("clean_wine.csv")
+  clean_wine <- read.csv("clean_wine.csv")
   cleaner_wine <- clean_wine %>%
     select(2:10) 
   cleanest_wine <- cleaner_wine[order(cleaner_wine$points, decreasing = TRUE), ]
