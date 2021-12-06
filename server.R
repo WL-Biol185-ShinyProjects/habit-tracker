@@ -95,7 +95,7 @@ function (input, output) {
   
   output$plot <- renderPlot({
     ##arrange(your.data(), value_rating)
-    ggplot(your.data(), aes(title, value_rating, color = country)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    ggplot(your.data(), aes(title, value_rating, fill = country)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + xlab("Name of Wine") + ylab("Value Rating")
   })
   
  pal <- colorFactor(pal = c("green", "blue", "purple", "yellow", "black"), domain = c("96", "97", "98", "99", "100"))
