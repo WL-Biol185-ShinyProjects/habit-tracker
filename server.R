@@ -84,11 +84,6 @@ function (input, output) {
                              (sorted by WineEnthusiast Points):"})
   output$table <- renderDataTable({
     your.data()
-    ##rownames = FALSE 
-    ##options = list(
-      ##pageLength = 100,
-      ##columnDefs = list(
-        ##list(targets = 10, visible = FALSE)))
     })
   
   output$text2 <- renderText({"Here are the value ratings (Wine Enthusiast Points per Dollar) of the wines we found for you:"})
