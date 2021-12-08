@@ -32,7 +32,7 @@ function (input, output) {
   
 
   
-  clean_wine <- read.csv("clean_wine.csv")
+  clean_wine <- readRDS("clean_wine.RDS")
   cleaner_wine <- clean_wine %>%
     select(2:10) 
   cleanest_wine <- cleaner_wine[order(cleaner_wine$points, decreasing = TRUE), ]
