@@ -8,6 +8,7 @@ library(leaflet)
 library(readr)
 library(shinyWidgets)
 library(markdown)
+library(data.table)
 
 #source("introduction.R")
 #source("map.R")
