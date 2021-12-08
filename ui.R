@@ -197,10 +197,11 @@ dashboardPage(skin = "blue",
                                 ),
                                 mainPanel(
                                   tabsetPanel(type = "tabs", 
+                                              tabPanel("Best Value Graph", textOutput("text2"), plotOutput("plot")),
                                               tabPanel("Table", 
                                                        textOutput("text"),
-                                                        dataTableOutput("table")), 
-                                              tabPanel("Best Value Graph", textOutput("text2"), plotOutput("plot"))
+                                                        dataTableOutput("table")) 
+                                          
                               )
                             )  
                             ))),
