@@ -122,7 +122,7 @@ function (input, output) {
               xlab= "Year")
     
     })
-    output$data <- DT:: renderDataTable (datatable(DTWine), colnames= c("Number", "Country", "Description", "Designation", "Points", "Price", "Province", "Region 1", "Region 2", "Variety", "Wineryy", "Lat", "Long"))
+    output$data <- renderDataTable({DTWine})
     
     output$worldvolumePlot<- renderPlot({
         ggplot(worldwinevolume, aes(Year, Mhl))+ 
